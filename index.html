@@ -7,7 +7,55 @@
 
     <body>
         <script>
+            function getComputerChoice() {
+               let computerChoice = Math.floor((Math.random() * 3));
+
+               if(computerChoice === 0){
+                computerChoice = Math.floor((Math.random() * 3));
+               } 
+
+               switch(computerChoice){
+                case 1: 
+                    return "Rock";
+                    break;
+                case 2: 
+                    return "Paper"
+                    break;
+                case 3: 
+                    return "Scissors"
+                    break; 
+               }
+            }
             
+            function gamerule(playerSelection, computerSelection){
+                if((playerSelection = "Rock") && (computerSelection = "Paper")){
+                    console.log("You Lose Paper beats Rock");
+                } else if ((playerSelection = "Rock") && (computerSelection = "Scissor")){
+                    console.log("You win Rock beats scissors");
+                } else  if ((playerSelection = "Rock") && (computerSelection = "Rock")){
+                    console.log("It's a tie. You both pick Rock");
+                }
+
+                if((playerSelection = "Paper") && (computerSelection = "Paper")){
+                    console.log("It;s a tie. You both pick Paper");
+                } else if ((playerSelection = "Paper") && (computerSelection = "Scissor")){
+                    console.log("You lose, scissors beats paper");
+                } else  if ((playerSelection = "Paper") && (computerSelection = "Rock")){
+                    console.log("You win. paper beats rock");
+                }
+
+                if((playerSelection = "Scissors") && (computerSelection = "Paper")){
+                    console.log("You win Scissors beats Paper");
+                } else if ((playerSelection = "Scissors") && (computerSelection = "Scissor")){
+                    console.log("It's a tie. you boh pick scissors");
+                } else  if ((playerSelection = "Scissors") && (computerSelection = "Rock")) {
+                    console.log("You lose, Rock beats Scissor");
+                }
+
+
+
+
+            }
         </script>
     </body>
 </html>
