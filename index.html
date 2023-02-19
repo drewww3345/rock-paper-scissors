@@ -7,6 +7,11 @@
 
     <body>
         <script>
+
+            let playerwin = 0;
+            let computerwin = 0;
+            let bothwin = 0; 
+
             function getComputerChoice() {
                let computerChoice = Math.floor((Math.random() * 4));
 
@@ -31,33 +36,54 @@
             
             function gamerule(playerSelection, computerSelection){
 
+
                 if((playerSelection == "Rock") && (computerSelection == "Paper")){
-                    console.log("You Lose Paper beats Rock");
-                } else if ((playerSelection == "Rock") && (computerSelection == "Scissor")){
-                    console.log("You win Rock beats scissors");
+                    return computerwin++;
+                } else if ((playerSelection == "Rock") && (computerSelection == "Scissors")){
+                    return playerwin++;
                 } else  if ((playerSelection == "Rock") && (computerSelection == "Rock")){
-                    console.log("It's a tie. You both pick Rock");
+                    return bothwin++;
                 } else if((playerSelection == "Paper") && (computerSelection == "Paper")){
-                    console.log("It;s a tie. You both pick Paper");
-                } else if ((playerSelection == "Paper") && (computerSelection == "Scissor")){
-                    console.log("You lose, scissors beats paper");
+                    return bothwin++;
+                } else if ((playerSelection == "Paper") && (computerSelection == "Scissors")){
+                    return computerwin++;
                 } else  if ((playerSelection == "Paper") && (computerSelection == "Rock")){
-                    console.log("You win. paper beats rock");
+                    return playerwin++;
                 }else if((playerSelection == "Scissors") && (computerSelection == "Paper")){
-                    console.log("You win Scissors beats Paper");
-                } else if ((playerSelection == "Scissors") && (computerSelection == "Scissor")){
-                    console.log("It's a tie. you boh pick scissors");
+                    return playerwin++;
+                } else if ((playerSelection == "Scissors") && (computerSelection == "Scissors")){
+                    return bothwin;
                 } else  if ((playerSelection == "Scissors") && (computerSelection == "Rock")) {
-                    console.log("You lose, Rock beats Scissor");
+                    return computerwin++;
                 }
+            }
+            
+            function game(){
+
+                for (let i = 0; i < 5; i++){
+                    let computerSelection = getComputerChoice();
+                    const playerSelection = "Rock";
+                    gamerule(playerSelection, computerSelection);
+                }
+
+               let outcome = computeWin(playerwin, computerwin);
+
+               return outcome;
+
 
             }
             
-            const playerSelection = "Rock";
-            const computerSelection = getComputerChoice();
+            function computeWin(playerwin, computerwin){
+                if(playerwin > computerwin){
+                    return "Player wins" + "*******" +  "Player:" + playerwin + "   " +  "Computer:" + computerwin;
+                } else if (playerwin < computerwin){
+                    return  "Player lost" + "*******" +  "Player:" + playerwin + "   " +  "Computer:" + computerwin;
+                } else if (playerwin == computerwin){
+                    return "It is a tie"
+                }
+            }
 
-            console.log(gamerule(playerSelection, computerSelection));
-            console.log(computerSelection);
+            console.log(game());
         </script>
     </body>
 </html>
