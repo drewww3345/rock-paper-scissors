@@ -6,11 +6,27 @@
     </head>
 
     <body>
+    <div>
+        <button class="rock" data-text="Rock">Rock</button>
+        <button class="paper" data-text="Paper">Paper</button>
+        <button class="scissors" data-text="Scissors">Scissors</button>
+    </div>
+    <div>
+        <div class="score"></div>
+        <div class="winner"></div>
+    </div>
         <script>
+            const rock = document.querySelector('.rock');
+            const paper = document.querySelector('.paper');
+            const scissors = document.querySelector('.scissors');
+            const score = document.querySelector('.score');
+            const winner = document.querySelector('.winner');
 
             let playerwin = 0;
             let computerwin = 0;
             let bothwin = 0; 
+
+
 
             function getComputerChoice() {
                let computerChoice = Math.floor((Math.random() * 4));
@@ -83,7 +99,32 @@
                 }
             }
 
-            console.log(game());
+            function playRound(e){
+                playerSelection = this.getAttribute('data-text');
+                gamerule(playerSelection, getComputerChoice());
+                score.textContent = `Player: ${playerwin}  Computer: ${computerwin}  Tie: ${bothwin}`;
+                
+                if(playerwin == 5){
+                winner.textContent = 'Player Wins';
+                }else if(computerwin == 5){
+                winner.textContent = 'Computer win';
+                 }
+
+            }
+
+            function reset (){
+                playerwin = 0;
+                computerwin = 0;
+                bothwin = 0; 
+            }
+
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => button.addEventListener('click', playRound));
+
+  
+         
+
+
         </script>
     </body>
 </html>
